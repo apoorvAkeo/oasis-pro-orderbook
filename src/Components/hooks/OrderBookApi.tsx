@@ -12,12 +12,14 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
   });
  // console.log("shhhh",sharedData);
   const [wholeData, setWholeData] = useState([
-    { type: 'snapshot', product_id: 'BTC-USD', asks:[ ["388393.093","0.12920"],["109200.20","0.182833"],["23071.20","0.082833"] ], bids: [ ["23071.20","0.082833"],["109200.20","0.182833"],["23071.20","0.082833"] ]},
+    { type: 'snapshot', product_id: 'BTC-USD', asks:[ ["388393.093","0.12920"],["109200.20","0.182833"],["23071.20","0.082833"],["109200.20","0.182833"],["4000.34","5000.43"],["109200.20","0.182833"],["4000.34","5000.43"] ], bids: [ ["109200.20","0.182833"],["23071.20","0.082833"],["109200.20","0.182833"],["23071.20","0.082833"],["4000.34","5000.43"],["109200.20","0.182833"],["4000.34","5000.43"] ]},
     { type: 'l2update', product_id: 'BTC-USD', changes:["buy","23071.20","0.082833"] },
     { type: 'l2update', product_id: 'BTC-USD', changes:["sell","388393.093","0.12920"] },
     { type: 'l2update', product_id: 'BTC-USD', changes:["buy","109200.20","0.182833"] },
     { type: 'l2update', product_id: 'BTC-USD', changes:["buy","23071.20","0.082833"] },
+    { type: 'l2update', product_id: 'BTC-USD', changes:["buy","109200.20","0.182833"] },
     { type: 'l2update', product_id: 'BTC-USD', changes:["sell","109200.20","0.182833"] },
+    { type: 'l2update', product_id: 'BTC-USD', changes:["sell","4000.34","5000.43"] },
   ]);
   
   useEffect(() => {

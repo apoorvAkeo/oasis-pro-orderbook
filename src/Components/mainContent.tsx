@@ -57,23 +57,23 @@ const MainContent = () => {
     return(
     <div style={{ padding: '24' }}>
         <Row className='cardBoxShadow'>
-          <Col span={8} xs={24} sm={24} md={8} lg={8} className="orderBookSpaceManage cardPaddingRight">
+          <Col xs={24} sm={24} md={8} lg={8} className="orderBookSpaceManage cardPaddingRight">
                 <OrderBook product_id="BTC-USD" shareData={shareData} />
                 {/* <Card className="site-layout-background spreadStyle">
                 <Table dataSource={dataSource} columns={columns} pagination={false} />
                 </Card>
                 <AskOrderBook /> */}
           </Col>
-          <Col span={16} xs={24} sm={24} md={16} lg={16}>
+          <Col  xs={24} sm={24} md={16} lg={16}>
               <Row className='setCardMinHeight'>
-                <Col span={12} xs={24} sm={24} md={12} lg={12} className="cardPaddingRight mbPaddingTop">
+                <Col xs={24} sm={24} md={12} lg={12} className="cardPaddingRight mbPaddingTop">
                   <OrderForm onHandleChange={onHandleChange}/>
                 </Col>
-                <Col span={12} xs={24} sm={24} md={12} lg={12} className="mbPaddingTop">
+                <Col xs={24} sm={24} md={12} lg={12} className="mbPaddingTop portfolioWrapper">
                   <PortFolio />
                 </Col>
               </Row>
-              <Col span={24} xs={24} sm={24} md={24} lg={24} className="tradeActivTopPading">
+              <Col xs={24} sm={24} md={24} lg={24} className="tradeActivTopPading">
                 <TradeActivity />  
               </Col>
           </Col>

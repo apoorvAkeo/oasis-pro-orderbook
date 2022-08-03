@@ -193,11 +193,13 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .cardBoxShadow .ant-card .ant-card-body{
-  box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 30%), 0 3px 16px rgb(0 0 0 / 30%);
 }
 
 .ant-table-tbody > tr.ant-table-row:hover > td, .ant-table-tbody > tr > td.ant-table-cell-row-hover {
   color:#000;
+  background: #727379;
+    cursor: pointer;
 }
 
 .headerStyle{
@@ -232,6 +234,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .card-heading-color{
   color:rgb(165, 163, 163);
+  font-weight: 600;
 }
 
 .card-book-wrapper .orderFormButtonSection{
@@ -323,8 +326,8 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .thirdRowOrderForm button{
   width:80%;
-  background:#7bc17b;
-  border-color: #7bc17b; 
+  background:#5fcf8c;
+  border-color: #5fcf8c; 
   font-weight: 700;
   color: white; 
   border-radius: 7px;
@@ -407,19 +410,22 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .OBP--sell {
-  color: green;
+  color: #488768;
   flex-direction: column;
-  margin-bottom: 145px;
+  /* margin-bottom: 145px; */
+  min-height: 308px;
   margin-top: 36px;
   font-size: 16px;
 }
 
 .OBP--ask {
-  color: red;
+  color: #c13032;
   flex-direction: column-reverse;
-  padding-bottom: 196px;
-  margin-top: 30px;
+  min-height: 260px;
+    position: relative;
+    top: -130px;
   font-size: 16px;
+  margin-top: 6em;
 }
 
 .OBP__order {
@@ -445,11 +451,11 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .OBP--sell .OBP__bar {
-  background-color: green;
+  background-color: #488768;
 }
 
 .OBP--ask .OBP__bar {
-  background-color: red;
+  background-color: #c13032;
 }
 
 
@@ -459,7 +465,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab .ant-tabs-tab-btn{
-  padding: 3px 50px;
+  /* padding: 3px 50px; */
   color:white!important;
 }
 
@@ -468,13 +474,13 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     border-color: #7bc17b;
 } */
 .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-list .ant-tabs-tab{
-  background: #817c7c;
-  border-color: #817c7c;
+  background: #727379;
+  border-color: #727379;
 }
 
 .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-list .ant-tabs-tab.ant-tabs-tab-active{
-    background: #7bc17b;
-    border-color: #7bc17b;
+    background: #5fd08d;
+    border-color: #5fd08d;
 }
 
 .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-list > div:nth-child(2){ 
@@ -494,8 +500,8 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .totalPriceDiv{
-  background: rgb(129, 124, 124);
-    border-radius: 7px;
+  background: #5a5a6d;
+    border-radius: 4px;
     padding: 8px;
     /* margin-left: 15px; */
     height: 100%;
@@ -507,48 +513,64 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     height: 100%;
 }
 
-.totalPriceDiv .ant-row div:first-child {
-  text-align: center;
+.totalPriceDiv .ant-row div:nth-child(2) {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.totalPriceDiv .ant-row div:nth-child(2) {
-  text-align: center;
-  font-weight: 700;
+.totalPriceDiv .ant-row div:first-child {
+  color: #a6a6af;
 }
 
 .parentTotalPrice{
   margin-top: 15px;
 }
 
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+  display: inline-block;
+  /* width: 522px!important; */
+}
+
+.ant-tabs-nav-list > .ant-tabs-tab{
+  width:50%!important;
+}
+
+.ant-tabs-nav-list > .ant-tabs-tab .ant-tabs-tab-btn{
+  margin: 0px auto!important;
+  padding: 3px 50px!important;
+}
+
+@media (min-width: 300px) and (max-width: 767px) {
+  .mbPaddingTop{
+    padding-top:30px!important;
+  }
+}
 
 @media (min-width: 300px) and (max-width: 1300px) {
-   .orderFormButtonSection .ant-tabs-nav-wrap .ant-tabs-nav-list {
+   /* .orderFormButtonSection .ant-tabs-nav-wrap .ant-tabs-nav-list {
     flex-wrap: wrap;
-  }
+  } */
 
   .orderFormButtonSection .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab{
     text-align: center;
     /* margin: 0px auto; */
   }
 
-  .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-list > div:nth-child(2) {
-    margin-left: 0px!important;
-  }
+  
 
-  .orderFormButtonSection .ml-15 {
+  /* .orderFormButtonSection .ml-15 {
     margin-left: 0px;
-  } 
+  }  */
   .card-book-wrapper .textAlignRight{
-    text-align: left;
+    text-align: right;
   }
   
   .tableOverflowX{
    overflow-x: auto;
   }
 
-  .mbPaddingTop{
-    padding-top:30px!important;
-  }
+  
   .ChangeDropDownColor{
     max-width: 130px!important;
   }
@@ -558,4 +580,58 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   .cardPaddingRight {
     padding-right: 0px;
  }
+}
+
+@media (min-width: 767px) and (max-width: 1256px) {
+
+}
+
+@media (max-width: 1250px){
+    .setCardMinHeight .mbPaddingTop {
+        display: block!important;
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+    }
+
+    .portfolioWrapper {
+      margin-top: 30px;
+    }
+
+    /* .portfolioWrapper .ant-card-body{
+      padding-right:0px !important;
+    } */
+
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+      display: inline-block;
+      /* width: 522px!important; */
+    }
+
+    .ant-tabs-nav-list > .ant-tabs-tab{
+      width:50%!important;
+    }
+
+    .ant-tabs-nav-list > .ant-tabs-tab .ant-tabs-tab-btn{
+      margin: 0px auto!important;
+      padding: 3px 50px!important;
+    }
+}
+
+.orderFormButtonSection .ant-tabs-card{
+  width:100%;
+}
+
+.orderFormButtonSection .ant-tabs > .ant-tabs-nav .ant-tabs-nav-operations{
+  display:none!important;
+}
+
+.orderFormButtonSection .row-top-margin-2x{
+  margin-top: 30px;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: transparent!important;
+}
+
+.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon, .ant-menu-dark .ant-menu-item-selected .anticon{
+  color:#1890ff!important;
 }

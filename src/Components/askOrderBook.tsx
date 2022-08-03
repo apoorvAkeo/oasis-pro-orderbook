@@ -52,7 +52,7 @@ const AskOrderBook = () => {
         },
       ];
     return(
-        <Card className="site-layout-background askTableCss" style={{ width: '100%',borderColor: '#2b2c3b',color:'white'}}>
+        <Card className="site-layout-background askTableCss" bordered={false} style={{ width: '100%',borderColor: '#2b2c3b',color:'white'}}>
         <Table dataSource={dataSource} columns={columns}  pagination={false}/>
         </Card>
     );

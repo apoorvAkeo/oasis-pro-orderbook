@@ -6,7 +6,7 @@ const SiteHeader = () => {
     const { Option } = Select;
         return(
             <Row className="selectDropDownLabel">
-                <Col span={8} xs={12} sm={16} md={8}>
+                <Col xs={14} sm={16} md={8}>
                     <div className="select-wrap">
                         <Select defaultValue="Apple INC" className='ChangeDropDownColor' bordered={false}>
                             <Option value="Apple INC">Apple INC</Option>
@@ -16,7 +16,7 @@ const SiteHeader = () => {
                         <label>Select asset</label>
                     </div>
                 </Col>
-                <Col span={8} xs={12} sm={8} md={8} style={{color:"white"}}>
+                <Col xs={10} sm={8} md={8} style={{color:"white"}}>
                     <Row>
                         <Col span={12} >
                             <span>$93.00</span>

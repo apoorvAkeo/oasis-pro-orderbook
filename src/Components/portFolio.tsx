@@ -76,7 +76,7 @@ const PortFolio = () => {
           },
       ];
     return(
-        <Card className="site-layout-background card-book-wrapper">
+        <Card className="site-layout-background card-book-wrapper" bordered={false}>
         <Row className='card-heading-color'>PORTFOLIO</Row>
         <Row className='portfolioMargin'>
             <p>$17'300.24</p>

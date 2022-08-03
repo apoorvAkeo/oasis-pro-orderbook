@@ -112,7 +112,7 @@ const OrderBook = ({ product_id, shareData }:any) => {
         spread = (Number(asks[0][0]) - Number(buys[0][0])).toFixed(2);
       }
     return(
-        <Card className="site-layout-background card-book-wrapper">
+        <Card className="site-layout-background card-book-wrapper" bordered={false}>
         <p className='card-heading-color'>ORDER BOOK</p>
         <OBP type="buy" orders={buys} product_id={product_id} />
         <div className="OB__header">

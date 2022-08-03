@@ -111,7 +111,7 @@ const TradeActivity = () => {
           },
       ];
     return(
-        <Card className="site-layout-background card-book-wrapper">
+        <Card className="site-layout-background card-book-wrapper" bordered={false}>
         <p className='card-heading-color'>TRENDING ACTIVITY</p>
         <div className='tableOverflowX'>
         <Table dataSource={dataSource} columns={columns} pagination={false} className="tradeActivityTable"/>

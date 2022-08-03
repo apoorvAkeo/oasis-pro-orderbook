@@ -5,6 +5,7 @@ import {
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
+  AppstoreFilled,
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
@@ -32,11 +33,12 @@ const App: React.FC = () =>  {
         <Menu
           theme="dark"
           mode="inline"
+         
           defaultSelectedKeys={['1']}
           items={[
             {
               key: '1',
-              icon: <UserOutlined />,
+              icon: <AppstoreFilled  style={{color:'##1890ff'}}/>,
               label: 'Menu 1',
             }
           ]}

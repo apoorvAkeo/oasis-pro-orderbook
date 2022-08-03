@@ -1,6 +1,6 @@
 import React from "react";
 
-const OBP = ({ orders, type, product_id, depth = 5 } : any) => {
+const OBP = ({ orders, type, product_id, depth = 7 } : any) => {
   //console.log("OBP");
   //console.log(type);
 //  console.log("orders",orders);
