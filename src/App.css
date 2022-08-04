@@ -464,6 +464,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .orderFormButtonSection .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab {
     font-weight: 700;
+    justify-content: center;
     border-radius: 7px
 }
 
@@ -587,6 +588,17 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
  .setCardMinHeight{
   padding-top: 30px;
 }
+  .OBP--sell{
+    min-height: 229px;
+  }
+  .OBP--ask {
+  top: 0px;
+  margin-top: 1em;
+  min-height: 0px;
+  }
+  .ant-tabs-nav-list > .ant-tabs-tab .ant-tabs-tab-btn {
+    padding: 3px 20px!important;
+  }
 }
 
 
@@ -617,8 +629,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     }
 
     .ant-tabs-nav-list > .ant-tabs-tab .ant-tabs-tab-btn{
-      margin: 0px auto!important;
-      padding: 3px 50px!important;
+      padding: 3px 50px;
     }
 }
 
@@ -657,6 +668,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 .selectDropDownLabel .select-wrap{
     position: relative;
     padding-right: 43px;
+    padding-bottom: 12px
 }
 
 .selectDropDownLabel .select-wrap:after {
@@ -681,7 +693,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .selectDropDownLabel .select-wrap .ant-select-selector{
   padding-right:50px;
-  width: 14em;
+  width: 200px;
 }
 
 .selectDropDownLabel > div:nth-child(2){
@@ -708,4 +720,11 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     padding-right:50px;
     width:auto;
   }
+  .selectDropDownLabel .select-wrap{
+    padding-bottom: 0px
+}
+}
+
+.selectDropDownLabel .ant-select-selection-item{
+  font-weight: 600;
 }
