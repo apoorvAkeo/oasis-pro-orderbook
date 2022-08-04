@@ -47,11 +47,11 @@ const OrderForm = ({onHandleChange}:any) => {
                     <Tabs defaultActiveKey="1" type="card" size={'small'} onChange={setTabChange}>
                         <TabPane tab="Buy" key="1" className='buyButton'>
                                 <Row className='row-top-margin'>
-                                    <Col sm={24} xs={24} md={12} lg={12}>
+                                    <Col sm={12} xs={12} md={12} lg={12}>
                                     <div>Apple Computers Inc.</div>
                                     <div>Selected asset</div>
                                     </Col>
-                                    <Col sm={24} xs={24} md={12} lg={12} className='textAlignRight'>
+                                    <Col sm={12} xs={12} md={12} lg={12} className='textAlignRight'>
                                     <div>$93.00</div>
                                     <div>Price share</div>
                                     </Col>
@@ -90,22 +90,22 @@ const OrderForm = ({onHandleChange}:any) => {
                         </TabPane>
                         <TabPane tab="Sell" key="2" className='sellButton'>
                                 <Row className='row-top-margin'>
-                                    <Col  sm={24} xs={24} md={12} lg={12}>
+                                    <Col  sm={12} xs={12} md={12} lg={12}>
                                     <div>Apple Computers Inc.</div>
                                     <div>Selected asset</div>
                                     </Col>
-                                    <Col sm={24} xs={24} md={12} lg={12} className='textAlignRight'>
+                                    <Col sm={12} xs={12} md={12} lg={12} className='textAlignRight'>
                                     <div>$93.00</div>
                                     <div>Price share</div>
                                     </Col>
                                 </Row>
                                 <form>
-                                <Row className='changeNumberInputColor second-row-top-margin'>
-                                    <Col span={8} sm={24} xs={24} md={8} lg={8}>
+                                <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
+                                    <Col sm={24} xs={24} md={12} lg={12}>
                                     <Row className='rowStyle'>Select quantity</Row>
                                     <InputNumber size="large" min={0} max={100000} defaultValue={100} id="sellQty" required onChange={qtyChange}/>
                                     </Col>
-                                    <Col span={15} sm={24} xs={24} md={15} lg={15} className="ml-15">
+                                    <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
                                         <InputNumber size="large" min={0} max={100000} defaultValue={5000} id="sellPrice" required onChange={priceChange}/>
                                     </Col>

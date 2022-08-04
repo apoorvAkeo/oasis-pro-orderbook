@@ -88,11 +88,11 @@
 }
 
 .ant-table-thead > tr > th{
-  padding: 0px 16px!important;
+  padding: 0px 0px!important;
 }
 
 .ant-table-thead > tr > th{
-  padding: 0px 16px!important;
+  padding: 0px 0px!important;
   background: #2b2c3b;
   color: rgb(165, 163, 163);
   font-size: 12px;
@@ -117,12 +117,12 @@ min-height: 365px!important;
 }
 
 .tdCellBorder .ant-table-tbody > tr > td{
-  padding: 3px 16px!important;
+  padding: 3px 16px 3px 0px!important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .tradeActivityTable .ant-table-tbody > tr > td{
-  padding: 8px 16px!important;
+  padding: 8px 16px 8px 0px!important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
@@ -156,13 +156,16 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .ChangeDropDownColor{
   color: #ffffff;
-  width: 351px;
-  border-right: 1px solid #f0f0f0;
+  /* width: 351px; */
+  /* width: 100%; */
+  height: 40px;
+  /* border-right: 1px solid #f0f0f0; */
   font-size: 21px;
 }
 
 .ChangeDropDownColor .ant-select-arrow{
   color: #ffffff;
+  /* margin-right: 30px; */
   font-size: 21px;
 }
 
@@ -267,7 +270,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .row-top-margin .ant-col div:first-child{
-  font-weight:500;
+  font-weight:700;
   font-size:15px;
 }
 
@@ -541,11 +544,11 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   padding: 3px 50px!important;
 }
 
-@media (min-width: 300px) and (max-width: 767px) {
+/* @media (min-width: 300px) and (max-width: 767px) {
   .mbPaddingTop{
     padding-top:30px!important;
   }
-}
+} */
 
 @media (min-width: 300px) and (max-width: 1300px) {
    /* .orderFormButtonSection .ant-tabs-nav-wrap .ant-tabs-nav-list {
@@ -571,20 +574,21 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   }
 
   
-  .ChangeDropDownColor{
+  /* .ChangeDropDownColor{
     max-width: 130px!important;
-  }
+  } */
+ 
 }
 
 @media (max-width: 767px) {
   .cardPaddingRight {
     padding-right: 0px;
  }
+ .setCardMinHeight{
+  padding-top: 30px;
+}
 }
 
-@media (min-width: 767px) and (max-width: 1256px) {
-
-}
 
 @media (max-width: 1250px){
     .setCardMinHeight .mbPaddingTop {
@@ -594,8 +598,10 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     }
 
     .portfolioWrapper {
-      margin-top: 30px;
+      padding-top: 30px;
     }
+
+    
 
     /* .portfolioWrapper .ant-card-body{
       padding-right:0px !important;
@@ -634,4 +640,72 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 
 .ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon, .ant-menu-dark .ant-menu-item-selected .anticon{
   color:#1890ff!important;
+}
+
+.ant-select-dropdown{
+  top: 77px !important;
+}
+
+.site-layout-background .anticon svg {
+  color:gray;
+}
+
+#components-layout-demo-custom-trigger .ant-layout-header{
+  height:auto;
+}
+
+.selectDropDownLabel .select-wrap{
+    position: relative;
+    padding-right: 43px;
+}
+
+.selectDropDownLabel .select-wrap:after {
+  content: '';
+  width: 1px;
+  background: #fff;
+  position: absolute;
+  right: 0;
+  display: block;
+  height: 60%;
+  top: 20%;
+}
+
+/* .selectDropDownLabel{
+  padding: 20px;
+  padding-left: 12px;
+}
+
+.selectDropDownLabel > div:first-child{
+  padding-right: 25px;
+}  */
+
+.selectDropDownLabel .select-wrap .ant-select-selector{
+  padding-right:50px;
+  width: 14em;
+}
+
+.selectDropDownLabel > div:nth-child(2){
+  padding: 20px;
+  padding-left: 54px;
+  color:#fff
+}
+
+.selectDropDownLabel > div:nth-child(2) > div:first-child{
+  padding-right: 56px;
+}
+
+@media (max-width: 706px) {
+  .selectDropDownLabel .select-wrap:after {  
+    display: none;
+  }
+  .selectDropDownLabel > div:nth-child(2){
+    padding: 10px;
+  }
+  .ant-select-dropdown{
+    top: 120px !important;
+  }
+  .selectDropDownLabel .select-wrap .ant-select-selector{
+    padding-right:50px;
+    width:auto;
+  }
 }

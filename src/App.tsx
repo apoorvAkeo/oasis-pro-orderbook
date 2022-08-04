@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import logo from './logo.svg';
+// import logo from 'logo.svg';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -13,7 +13,7 @@ import SiteHeader from './Components/Common/header';
 import MainContent from './Components/mainContent';
 import { useState, useEffect } from 'react';
 import './App.css';
-
+const logo: string = require("./logo.svg").default; //simple import doesn't work in tsx so using this
 const { Header, Sider, Content } = Layout;
 
 const App: React.FC = () =>  {
@@ -28,17 +28,16 @@ const App: React.FC = () =>  {
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          {/* <img src={logo} /> */}
+          <img src={logo} />
         </div>
         <Menu
           theme="dark"
           mode="inline"
-         
           defaultSelectedKeys={['1']}
           items={[
             {
               key: '1',
-              icon: <AppstoreFilled  style={{color:'##1890ff'}}/>,
+              icon: <AppstoreFilled />,
               label: 'Menu 1',
             }
           ]}
