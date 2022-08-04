@@ -117,12 +117,12 @@ min-height: 365px!important;
 }
 
 .tdCellBorder .ant-table-tbody > tr > td{
-  padding: 3px 16px 3px 0px!important;
+  padding: 3px 16px 3px 10px!important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
 .tradeActivityTable .ant-table-tbody > tr > td{
-  padding: 8px 16px 8px 0px!important;
+  padding: 8px 16px 8px 10px!important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 }
 
@@ -195,8 +195,13 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   border:0px;
 }
 
-.cardBoxShadow .ant-card .ant-card-body{
+/* .cardBoxShadow .ant-card .ant-card-body{
   box-shadow: 0 3px 6px rgb(0 0 0 / 30%), 0 3px 16px rgb(0 0 0 / 30%);
+} */
+
+.ant-card.site-layout-background.card-book-wrapper {
+  box-shadow: 0 3px 6px rgb(0 0 0 / 30%);
+  border-radius: 5px;
 }
 
 .ant-table-tbody > tr.ant-table-row:hover > td, .ant-table-tbody > tr > td.ant-table-cell-row-hover {
@@ -376,12 +381,15 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 .OB__header2 {
   display: flex;
   color: rgb(165, 163, 163);
+  font-weight:600;
 }
 
 .OB__header2 > * {
   flex-basis: 50%;
 }
-
+.OBP__order .OBP__price{
+  font-weight: 600;
+}
 .OB__S {
   flex-basis: auto;
   height: 2em;
@@ -445,6 +453,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   display: flex;
   justify-content: center;
   position: relative;
+  font-weight:600;
 }
 
 .OBP__bar {
