@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/oasis-pro-orderbook/static/css/main.246b1a3c.css",
-    "main.js": "/oasis-pro-orderbook/static/js/main.ea111d40.js",
+    "main.css": "/oasis-pro-orderbook/static/css/main.8931a5a5.css",
+    "main.js": "/oasis-pro-orderbook/static/js/main.2f89482e.js",
     "index.html": "/oasis-pro-orderbook/index.html",
-    "main.246b1a3c.css.map": "/oasis-pro-orderbook/static/css/main.246b1a3c.css.map",
-    "main.ea111d40.js.map": "/oasis-pro-orderbook/static/js/main.ea111d40.js.map"
+    "main.8931a5a5.css.map": "/oasis-pro-orderbook/static/css/main.8931a5a5.css.map",
+    "main.2f89482e.js.map": "/oasis-pro-orderbook/static/js/main.2f89482e.js.map"
   },
   "entrypoints": [
-    "static/css/main.246b1a3c.css",
-    "static/js/main.ea111d40.js"
+    "static/css/main.8931a5a5.css",
+    "static/js/main.2f89482e.js"
   ]
 }
