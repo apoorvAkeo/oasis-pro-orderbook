@@ -44,6 +44,10 @@ const OrderForm = ({onHandleChange}:any) => {
         setTotalPrice(qty*e);
     }
 
+    function onChange(value:any) {
+        console.log('changed', value);
+      }
+
     const setTabChange = (activeKey:any) => {
         if(activeKey==2){
             setType("sell");
@@ -72,12 +76,12 @@ const OrderForm = ({onHandleChange}:any) => {
                                 <form>
                                 <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
                                     <Col sm={24} xs={24} md={12} lg={12}>
-                                        <Row className='rowStyle'>Select quantity</Row>
-                                        <InputNumber size="large" min={0} max={100000} name="buyQuantity" defaultValue={100} required id="buyQty" onChange={qtyChange} />
+                                        <Row className='rowStyle'>Select quantity</Row>  
+                                        <InputNumber size="large" defaultValue={100} min={0} max={100000} step={0} name="buyQuantity" required id="buyQty" onChange={qtyChange} />                    
                                     </Col>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
-                                        <InputNumber size="large" min={0} max={100000} name="limitPrice" defaultValue={5000} required id="buyPrice" onChange={priceChange}/>
+                                        <InputNumber size="large" min={0} max={100000} name="limitPrice" step={0} defaultValue={5000} required id="buyPrice" onChange={priceChange}/>
                                     </Col>
                                 </Row>
                                 <Row className="parentTotalPrice">
