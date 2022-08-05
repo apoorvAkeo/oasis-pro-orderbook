@@ -10,10 +10,11 @@ const OrderForm = ({onHandleChange}:any) => {
     const openNotification = (placement: NotificationPlacement, orderType:string) => {
         onSentData();
         setTimeout(() => {
-            notification.open({
-            message: `Notification ${placement}`,
-            description: `${orderType} order`,
+            notification.success({
+            message: `Notification`,
+            description: `order for Apple INC@price for ${qty} quantity is executed`,
             placement,
+            className: 'notificationMsgContainer'
             });
         }, 3000);
       };

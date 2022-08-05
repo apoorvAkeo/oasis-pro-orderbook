@@ -742,3 +742,43 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   color: #5fcf8c;
   border-color: #5fcf8c;
 }
+
+.notificationMsgContainer{
+  border-left: 4px solid #488768;
+  color: #fff;
+    background-color: rgba(0, 0, 0, 0.58);
+    border-radius: 4px;
+    box-shadow: 0 10px 15px rgb(0 0 0 / 65%);
+    backdrop-filter: blur(4px);
+    transition: opacity 256ms ease-in;
+    /* border-left: 2px solid #fff; */
+}
+
+.notificationMsgContainer .ant-notification-notice-message, .notificationMsgContainer svg{
+  color:#fff;
+  margin-bottom: 0px;
+}
+
+.ant-notification-notice-message{
+  margin-bottom:0px;
+}
+.ant-notification-notice-content{
+  margin-left: -20px;
+}
+.ant-notification-notice-icon-success svg{
+  height: 45px;
+  width: 32px;
+  position: relative;
+  color:#488768;
+  /* left: -19px; */
+}
+.ant-notification-notice-with-icon .ant-notification-notice-description {
+  font-size:13px;
+  font-weight: 500;
+  color: #89878b;
+}
+
+.ant-notification-notice-close {
+  top: 3px;
+  right: 11px;
+}
