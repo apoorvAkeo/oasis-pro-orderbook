@@ -737,3 +737,8 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 .selectDropDownLabel .ant-select-selection-item{
   font-weight: 600;
 }
+
+.thirdRowOrderForm .ant-btn:hover, .thirdRowOrderForm .ant-btn:focus{
+  color: #5fcf8c;
+  border-color: #5fcf8c;
+}

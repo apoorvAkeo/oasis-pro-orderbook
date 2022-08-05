@@ -1,11 +1,23 @@
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import { Layout, Card, Button, Space, InputNumber, Row, Col, Tabs, Form } from 'antd';
-
+import { Layout, Card, Button, Space, InputNumber, Row, Col, Tabs, Form, notification } from 'antd';
+import type { NotificationPlacement } from 'antd/es/notification';
 const { Content } = Layout;
 const { TabPane } = Tabs;
 
 const OrderForm = ({onHandleChange}:any) => {
+
+    const openNotification = (placement: NotificationPlacement, orderType:string) => {
+        onSentData();
+        setTimeout(() => {
+            notification.open({
+            message: `Notification ${placement}`,
+            description: `${orderType} order`,
+            placement,
+            });
+        }, 3000);
+      };
+
     const [qty,setQty] = useState(100);
     const [price,setPrice] = useState(5000);
     const [totalPrice,setTotalPrice] = useState(qty*price);
@@ -22,9 +34,9 @@ const OrderForm = ({onHandleChange}:any) => {
         onHandleChange(datass);
     }
 
-    const handleSubmit = () => {
-        onSentData();
-    };
+    // const handleSubmit = () => {
+    //     onSentData();
+    // };
 
     const priceChange = (e:number) => {
         setPrice(e);
@@ -83,7 +95,7 @@ const OrderForm = ({onHandleChange}:any) => {
                                 </Row>
                                 <Row className='thirdRowOrderForm'>
                                     <Col span={24} >
-                                    <Button size="large" htmlType="submit" onClick={() => handleSubmit()}>Buy assets</Button>
+                                    <Button size="large" onClick={() => openNotification('topRight','buy')}>Buy assets</Button>
                                     </Col>
                                 </Row>
                                 </form>
@@ -126,7 +138,7 @@ const OrderForm = ({onHandleChange}:any) => {
                                 </Row>
                                 <Row className='thirdRowOrderForm'>
                                     <Col span={24}>
-                                    <Button size="large" onClick={() => handleSubmit()}>Sell assets</Button>
+                                    <Button size="large" onClick={() => openNotification('topRight','sell')}>Sell assets</Button>
                                     </Col>
                                 </Row>
                                 </form>
