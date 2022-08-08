@@ -20,7 +20,7 @@ const App: React.FC = () =>  {
   const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
-    document.title = "OasisPro Orderbook"
+    document.title = "OasisPro Matching Engine"
   }, []);
 
   return (
