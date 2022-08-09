@@ -11,6 +11,7 @@ import {
 import { Layout, Menu } from 'antd';
 import SiteHeader from './Components/Common/header';
 import MainContent from './Components/mainContent';
+import { Counter } from './counter/Counter';
 import { useState, useEffect } from 'react';
 import './App.css';
 const logo: string = require("./logo.svg").default; //simple import doesn't work in tsx so using this
@@ -54,7 +55,9 @@ const App: React.FC = () =>  {
         <Content className='bodyContentStyle'>
             <MainContent />
         </Content>
+          <Counter />
       </Layout>
+      
     </Layout>
     </div>
   );
