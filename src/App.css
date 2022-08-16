@@ -424,12 +424,12 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   color: #488768;
   flex-direction: column;
   /* margin-bottom: 145px; */
-  min-height: 250px;
+  min-height: 290px;
   margin-top: 36px;
   font-size: 16px;
 }
 
-.OBP--ask {
+/* .OBP--ask {
   color: #c13032;
   flex-direction: column-reverse;
   min-height: 260px;
@@ -437,6 +437,14 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     top: -130px;
   font-size: 16px;
   margin-top: 6em;
+} */
+.OBP--ask {
+  color: #c13032;
+  flex-direction: column;
+  min-height: 250px;
+  position: relative;
+  font-size: 16px;
+  margin-top: 43px;
 }
 
 .OBP__order {
@@ -598,13 +606,13 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   padding-top: 30px;
 }
   .OBP--sell{
-    min-height: 229px;
+    min-height: 175px;
   }
-  .OBP--ask {
+  /* .OBP--ask {
   top: 0px;
   margin-top: 1em;
   min-height: 0px;
-  }
+  } */
   .ant-tabs-nav-list > .ant-tabs-tab .ant-tabs-tab-btn {
     padding: 3px 12px!important;
   }
@@ -752,6 +760,24 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     backdrop-filter: blur(4px);
     transition: opacity 256ms ease-in;
     /* border-left: 2px solid #fff; */
+}
+.errorMsgContainer{
+  border-left: 4px solid #c13032;
+  color: #fff;
+    background-color: rgba(0, 0, 0, 0.58);
+    border-radius: 4px;
+    box-shadow: 0 10px 15px rgb(0 0 0 / 65%);
+    backdrop-filter: blur(4px);
+    transition: opacity 256ms ease-in;
+}
+
+.errorMsgContainer .ant-notification-notice-message{
+  color:#fff;
+  margin-bottom: 0px;
+}
+
+.errorMsgContainer .ant-notification-notice-close-icon svg{
+ color: #fff;
 }
 
 .notificationMsgContainer .ant-notification-notice-message, .notificationMsgContainer svg{
