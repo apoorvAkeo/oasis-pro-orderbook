@@ -25,7 +25,7 @@ const axiosInstance = axios.create({
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       };
-      await axios.post('http://54.175.183.148:3001/login', params, headerrs).then((response) => {
+      await axios.post('https://54.175.183.148:3001/login', params, headerrs).then((response) => {
           let newToken = response.data.access_token;
           window.localStorage.setItem('token', newToken);
           request!.headers!.Authorization = `Bearer ${newToken}`;
