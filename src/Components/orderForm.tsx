@@ -34,6 +34,8 @@ const OrderForm = ({onHandleChange}:any) => {
                 .POST(url,data)
                 .then((res) => {
                     onSentData();
+                    setQty(0);
+                    setPrice(0);
                     setTimeout(() => {
                         notification.success({
                         message: `Notification`,

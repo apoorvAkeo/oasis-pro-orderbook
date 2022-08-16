@@ -3,7 +3,7 @@ import axios from 'axios';
 let tokens = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 const axiosInstance = axios.create({
   // env file base url
-  baseURL: 'https://54.175.183.148:3001/',
+  baseURL: 'https://mengine.oasispromarkets.com/',
   headers: {
     accept: 'application/json',
     Authorization: `Bearer ${tokens}`
@@ -13,19 +13,10 @@ const axiosInstance = axios.create({
   axiosInstance.interceptors.request.use(async function (request) {
     if(!tokens){
       let config = {
-        username: 'check@gmail.com',
-        password: 'password',
-        client_id: '',
-        client_secret: '',
-        grant_type: ''
+        'username': 'calvin@oasis.com',
+        'password': 'password'
       };
-      const params = new URLSearchParams(config);
-      const headerrs = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      };
-      await axios.post('https://54.175.183.148:3001/login', params, headerrs).then((response) => {
+      await axios.post('https://mengine.oasispromarkets.com/login', config).then((response) => {
           let newToken = response.data.access_token;
           window.localStorage.setItem('token', newToken);
           request!.headers!.Authorization = `Bearer ${newToken}`;

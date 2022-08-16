@@ -35,7 +35,7 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
        setspread(res['spread']);
     })
     .catch((error) => {
-      console.log(error.toJSON()) 
+      console.log(error) 
     })
    },[sharedData]);
 
@@ -67,51 +67,8 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
                 spread: spread
               };
             });
-          } else if (data.type === "l2update") {
-            const removedItems = data.changes.filter((el: any[]) => Number(el[2]) === 0);
-            const removedAsks = removedItems
-              .filter((el: string[]) => el[0] === "sell")
-              .map((el: any[]) => el[1]);
-            const removedBuys = removedItems
-              .filter((el: string[]) => el[0] === "buy")
-              .map((el: any[]) => el[1]);
-            const addedItems = data.changes.filter((el: any[]) => Number(el[2]) !== 0);
-            const addedAsks = addedItems
-              .filter((el: string[]) => el[0] === "sell")
-              .map((el: string | any[]) => el.slice(1));
-            const addedBuys = addedItems
-              .filter((el: string[]) => el[0] === "buy")
-              .map((el: string | any[]) => el.slice(1));
-            setOB((prevOB) => {
-              const asks = [...prevOB.asks]
-                .filter((ask) => !removedAsks.includes(ask[0]))
-                .concat(addedAsks);
-              const buys = [...prevOB.buys]
-                .filter((buy) => !removedBuys.includes(buy[0]))
-                .concat(addedBuys);
-              asks.sort((a, b) =>
-                Number(a[0]) < Number(b[0])
-                  ? -1
-                  : Number(a[0]) > Number(b[0])
-                  ? 1
-                  : 0
-              );
-              buys.sort((a, b) =>
-                Number(a[0]) < Number(b[0])
-                  ? 1
-                  : Number(a[0]) > Number(b[0])
-                  ? -1
-                  : 0
-              );
-              return {
-                ...prevOB,
-                asks: asks.slice(0, depth),
-                buys: buys.slice(0, depth),
-                spread: spread
-              };
-            });
-          } else if (data.type === "subscriptions") {
-          } else {
+          }
+          else {
             throw new Error();
           }
      })}
