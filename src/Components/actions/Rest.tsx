@@ -3,7 +3,7 @@ import axios from 'axios';
 let tokens = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 const axiosInstance = axios.create({
   // env file base url
-  baseURL: 'http://54.175.183.148:3001/',
+  baseURL: 'https://54.175.183.148:3001/',
   headers: {
     accept: 'application/json',
     Authorization: `Bearer ${tokens}`
