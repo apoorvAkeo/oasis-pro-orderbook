@@ -11,12 +11,12 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
     asks: [],
     spread: '...'
   });
-  const [spread, setspread] = useState('..');
+
   var buysArray:any = [];
   var sellArray:any = [];
 
    const [wholeData, setWholeData] = useState([
-    {type:'snapshot', product_id:'BTC-USD', asks: [], bids: []},
+    {type:'snapshot', product_id:product_id, spread:'...', asks: [], bids: []},
   ]);
   
   //api calling setup
@@ -26,13 +26,44 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
     .then((res) => {
        let ask = res['asks'];
        ask.map((data) => sellArray.push([`${data.price}`,`${data.quantity}`]));
-       let previousObject = [...wholeData];
+       let previousObject = [...wholeData]; 
        previousObject[0].asks = sellArray;
        let buy = res['bids'];
        buy.map((data) => buysArray.push([`${data.price}`,`${data.quantity}`]));
        previousObject[0].bids = buysArray;
+       previousObject[0].spread = res['spread'];
        setWholeData(previousObject);
-       setspread(res['spread']);
+            {wholeData.map((data:any) => {
+              console.log("data",data);
+              if (data.type === "snapshot") {   
+                  setOB((prevOB) => {
+                    data.asks.sort((a: any[], b: any[]) =>
+                      Number(a[0]) < Number(b[0])
+                        ? -1
+                        : Number(a[0]) > Number(b[0])
+                        ? 1
+                        : 0
+                    );
+                    data.bids.sort((a: any[], b: any[]) =>
+                      Number(a[0]) < Number(b[0])
+                        ? 1
+                        : Number(a[0]) > Number(b[0])
+                        ? -1
+                        : 0
+                    );
+
+                    return {
+                      ...prevOB,
+                      asks: data.asks.slice(0, depth),
+                      buys: data.bids.slice(0, depth),
+                      spread: data.spread
+                    };
+                  });
+                }
+                else {
+                  throw new Error();
+                }
+          })}
     })
     .catch((error) => {
       console.log(error) 
@@ -40,42 +71,13 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
    },[sharedData]);
 
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   console.log("Second UseEffect")
+     
+  //     console.log("OB",ob);
     
-     {wholeData.map((data:any) => {
-        if (data.type === "snapshot") {   
-            setOB((prevOB) => {
-              data.asks.sort((a: any[], b: any[]) =>
-                Number(a[0]) < Number(b[0])
-                  ? -1
-                  : Number(a[0]) > Number(b[0])
-                  ? 1
-                  : 0
-              );
-              data.bids.sort((a: any[], b: any[]) =>
-                Number(a[0]) < Number(b[0])
-                  ? 1
-                  : Number(a[0]) > Number(b[0])
-                  ? -1
-                  : 0
-              );
-
-              return {
-                ...prevOB,
-                asks: data.asks.slice(0, depth),
-                buys: data.bids.slice(0, depth),
-                spread: spread
-              };
-            });
-          }
-          else {
-            throw new Error();
-          }
-     })}
-       
-    
-  }, [product_id, depth, sharedData, spread]);
-
+  // }, [status, spread, depth]);
+ // console.log("OB",ob);
   return ob;
 };
 

@@ -103,12 +103,12 @@ const OrderForm = ({onHandleChange}:any) => {
                                 <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                     <Row className='rowStyle'>Select quantity</Row>
-                                    <Input size="large" type="number" min="1" style={{background: "rgb(43, 44, 59)"}}  max={100000} name="sellQuantity" required id="sellQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                    <Input size="large" type="number" min="1" style={{background: "rgb(43, 44, 59)"}} placeholder="1" max={100000} name="sellQuantity" required id="sellQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
                                     {/* <InputNumber size="large" step={0} min={0} max={100000} defaultValue={100} id="sellQty" required onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)} /> */}
                                     </Col>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
-                                        <Input size="large" type="number" style={{background: "rgb(43, 44, 59)"}} min={1} max={100000} name="limitPrice" required id="sellPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                        <Input size="large" type="number" style={{background: "rgb(43, 44, 59)"}} min={1} placeholder="999" max={100000} name="limitPrice" required id="sellPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
                                         {/* <InputNumber size="large" step={0} min={0} max={100000} defaultValue={5000} id="sellPrice" required onChange={priceChange}/> */}
                                     </Col>
                                 </Row>
@@ -148,11 +148,11 @@ const OrderForm = ({onHandleChange}:any) => {
                                 <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Select quantity</Row>  
-                                        <Input size="large" type="number" min="1" style={{background: "rgb(43, 44, 59)"}} max={100000} name="buyQuantity" required id="buyQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>                    
+                                        <Input size="large" type="number" min="1"  placeholder="1" style={{background: "rgb(43, 44, 59)"}} max={100000} name="buyQuantity" required id="buyQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>                    
                                     </Col>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
-                                        <Input size="large" type="number" style={{background: "rgb(43, 44, 59)"}} min={1} max={100000} name="limitPrice" required id="buyPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                        <Input size="large" type="number"  placeholder="999" style={{background: "rgb(43, 44, 59)"}} min={1} max={100000} name="limitPrice" required id="buyPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
                                     </Col>
                                 </Row>
                                 <Row className="parentTotalPrice">
