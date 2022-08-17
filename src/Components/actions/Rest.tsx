@@ -38,7 +38,7 @@ const axiosInstance = axios.create({
             if (err.response.status === 401) {
               setTimeout(() => {
               window.localStorage.removeItem('token')
-              window.location.href = "/";
+              window.location.href = "/oasis-pro-orderbook/";
               }, 5000);    
             }
           }
