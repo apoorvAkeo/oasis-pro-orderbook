@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Col, Row } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Col, Row, notification } from 'antd';
 import OrderBook from './orderBook';
 import OrderForm from './orderForm';
 import PortFolio from './portFolio';
@@ -12,6 +12,26 @@ const MainContent = () => {
     const onHandleChange = (e:any) => {
       setSharedData(e);
     }
+    
+    
+    function showNotificationPopup(){
+      notification.success({
+        message: `Notification`,
+        description: `Notification After 2 second`,
+        placement: 'topRight',
+        className: 'notificationMsgContainer'
+        });
+     }
+
+      // useEffect(() => {
+      //   const timer = setInterval(() => {
+      //     showNotificationPopup();
+      //   }, 3000); 
+
+      //   return function stopTimer() {
+      //     clearInterval(timer)
+      //   }
+      // });
 
     return(
     <div style={{ padding: '24' }}>
