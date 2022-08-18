@@ -1,49 +1,70 @@
 import * as React from 'react';
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import restActions from './actions/Rest';
+import { AssetContext } from './actions/Context';
 import { Card, Button, Row, Col, Tabs, notification,Input } from 'antd';
 import type { NotificationPlacement } from 'antd/es/notification';
 
 const { TabPane } = Tabs;
 
 const OrderForm = ({onHandleChange}:any) => {
-
-    const [qty,setQty] = useState(0);
-    const [price,setPrice] = useState(0);
-    const [totalPrice,setTotalPrice] = useState(qty*price);
+    const ticker = useContext(AssetContext);
+    const [qty,setQty] = useState(1);
+    const [price,setPrice] = useState(10);
+    const [totalPrice,setTotalPrice] = useState(10);
+    const [disableButton, setDisableButton] = useState(false);
     const [type, setType] = useState("sell");
 
-    const qtyChange = (e:any) => {
-        setQty(e.target.value);
-        setTotalPrice(e.target.value*price);
+    useEffect(() => {
+        setTotalPrice(qty*price);
+    },[qty,price]);
+
+
+    const setTabChange = (activeKey:any) => {
+        if(activeKey==2){
+            setType("buy");
+        }
+        setQty(1);
+        setPrice(10);
+        setTotalPrice(qty*price);
+    }
+
+    const preventSymbol = (e:any) => {
+        if (e.code === 'Minus' || e.code === "NumpadSubtract"  || e.code === "Equal" || e.code === "NumpadAdd") {
+            e.preventDefault();
+        }
     };
 
-     
     const postOrderBookData = (placement: NotificationPlacement, orderType:string) => {
         if(qty && totalPrice){
+            setDisableButton(true);
                 let data:any = {
                     price: price,
                     quantity: qty
                 };
-                var url =  `order/post-ask`;
+                var url =  `order/${ticker}/post-ask`;
                 if(orderType=="Order"){
-                url =  `order/post-bid`;
+                url =  `order/${ticker}/post-bid`;
                 }
                 const params = new URLSearchParams(data);
                 restActions
                 .POST(url,data)
                 .then((res) => {
-                    onSentData();
-                    setQty(0);
-                    setPrice(0);
-                    setTimeout(() => {
-                        notification.success({
-                        message: `Notification`,
-                        description: `${orderType} for Apple INC@${price} for ${qty} quantity is executed`,
-                        placement,
-                        className: 'notificationMsgContainer'
-                        });
-                    }, 3000);
+                    if(res){
+                       onSentData();
+                        setQty(0);
+                        setPrice(0);
+                        setTotalPrice(0);
+                        setDisableButton(false);
+                        // setTimeout(() => {
+                        //     notification.success({
+                        //     message: `Notification`,
+                        //     description: `${orderType} for Apple INC@${price} for ${qty} quantity is executed`,
+                        //     placement,
+                        //     className: 'notificationMsgContainer'
+                        //     });
+                        // }, 3000);
+                    }
                 })
                 .catch((error) => {
                   console.log(error.toJSON()) 
@@ -63,26 +84,6 @@ const OrderForm = ({onHandleChange}:any) => {
        onHandleChange({});
     }
 
-    const preventSymbol = (e:any) => {
-        if (e.code === 'Minus' || e.code === "NumpadSubtract"  || e.code === "Equal" || e.code === "NumpadAdd") {
-            e.preventDefault();
-        }
-    };
-
-    const priceChange = (e:any) => {
-        setPrice(e.target.value);
-        setTotalPrice(qty*e.target.value);
-    }
-
-    const setTabChange = (activeKey:any) => {
-        if(activeKey==2){
-            setType("buy");
-        }
-        setQty(0);
-        setPrice(0);
-        setTotalPrice(qty*price);
-    }
-
     return(
         <Card className="site-layout-background card-book-wrapper" bordered={false}>
             <Row className='card-heading-color'>ORDER FORM</Row>
@@ -91,7 +92,7 @@ const OrderForm = ({onHandleChange}:any) => {
                         <TabPane tab="Sell" key="1" className='sellButton'>
                                 <Row className='row-top-margin'>
                                     <Col  sm={12} xs={12} md={12} lg={12}>
-                                    <div>Apple Computers Inc.</div>
+                                    <div>{ticker}</div>
                                     <div>Selected asset</div>
                                     </Col>
                                     <Col sm={12} xs={12} md={12} lg={12} className='textAlignRight'>
@@ -103,12 +104,12 @@ const OrderForm = ({onHandleChange}:any) => {
                                 <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                     <Row className='rowStyle'>Select quantity</Row>
-                                    <Input size="large" type="number" min="1" style={{background: "rgb(43, 44, 59)"}} placeholder="1" max={100000} name="sellQuantity" required id="sellQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                    <Input size="large" type="number" min="1" style={{background: "rgb(43, 44, 59)"}} placeholder="1" max={100000} value={qty} name="sellQuantity" required id="sellQty" onChange={(e:any) => setQty(e.target.value)} onKeyPress={(e) => preventSymbol(e)}/>
                                     {/* <InputNumber size="large" step={0} min={0} max={100000} defaultValue={100} id="sellQty" required onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)} /> */}
                                     </Col>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
-                                        <Input size="large" type="number" style={{background: "rgb(43, 44, 59)"}} min={1} placeholder="999" max={100000} name="limitPrice" required id="sellPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                        <Input size="large" type="number" style={{background: "rgb(43, 44, 59)"}} min={1} placeholder="999" max={100000} value={price} name="limitPrice" required id="sellPrice" onChange={(e:any) => setPrice(e.target.value)} onKeyPress={(e) => preventSymbol(e)}/>
                                         {/* <InputNumber size="large" step={0} min={0} max={100000} defaultValue={5000} id="sellPrice" required onChange={priceChange}/> */}
                                     </Col>
                                 </Row>
@@ -128,7 +129,7 @@ const OrderForm = ({onHandleChange}:any) => {
                                 </Row>
                                 <Row className='thirdRowOrderForm'>
                                     <Col span={24}>
-                                    <Button size="large" onClick={() => postOrderBookData('topRight','Sold')}>Sell assets</Button>
+                                    <Button size="large" onClick={() => postOrderBookData('topRight','Sold')} disabled={disableButton}>Sell assets</Button>
                                     </Col>
                                 </Row>
                                 </form>
@@ -136,7 +137,7 @@ const OrderForm = ({onHandleChange}:any) => {
                         <TabPane tab="Buy" key="2" className='buyButton'>
                                 <Row className='row-top-margin'>
                                     <Col sm={12} xs={12} md={12} lg={12}>
-                                    <div>Apple Computers Inc.</div>
+                                    <div>{ticker}</div>
                                     <div>Selected asset</div>
                                     </Col>
                                     <Col sm={12} xs={12} md={12} lg={12} className='textAlignRight'>
@@ -148,11 +149,11 @@ const OrderForm = ({onHandleChange}:any) => {
                                 <Row className='changeNumberInputColor second-row-top-margin' gutter={8}>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Select quantity</Row>  
-                                        <Input size="large" type="number" min="1"  placeholder="1" style={{background: "rgb(43, 44, 59)"}} max={100000} name="buyQuantity" required id="buyQty" onChange={(e) => qtyChange(e)} onKeyPress={(e) => preventSymbol(e)}/>                    
+                                        <Input size="large" type="number" min="1"  placeholder="1" style={{background: "rgb(43, 44, 59)"}} max={100000} name="buyQuantity" value={qty} required id="buyQty" onChange={(e:any) => setQty(e.target.value)} onKeyPress={(e) => preventSymbol(e)}/>                    
                                     </Col>
                                     <Col sm={24} xs={24} md={12} lg={12}>
                                         <Row className='rowStyle'>Limit Price</Row>
-                                        <Input size="large" type="number"  placeholder="999" style={{background: "rgb(43, 44, 59)"}} min={1} max={100000} name="limitPrice" required id="buyPrice" onChange={(e) => priceChange(e)} onKeyPress={(e) => preventSymbol(e)}/>
+                                        <Input size="large" type="number"  placeholder="999" style={{background: "rgb(43, 44, 59)"}} min={1} max={100000} name="limitPrice" value={price} required id="buyPrice" onChange={(e:any) => setPrice(e.target.value)} onKeyPress={(e) => preventSymbol(e)}/>
                                     </Col>
                                 </Row>
                                 <Row className="parentTotalPrice">
@@ -171,7 +172,7 @@ const OrderForm = ({onHandleChange}:any) => {
                                 </Row>
                                 <Row className='thirdRowOrderForm'>
                                     <Col span={24} >
-                                    <Button size="large" onClick={() => postOrderBookData('topRight','Order')}>Buy assets</Button>
+                                    <Button size="large" onClick={() => postOrderBookData('topRight','Order')} disabled={disableButton}>Buy assets</Button>
                                     </Col>
                                 </Row>
                                 </form>

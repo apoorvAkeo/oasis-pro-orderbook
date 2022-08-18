@@ -1,63 +1,46 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { Layout, Card, Table, Row, Col } from 'antd';
+import restActions from './actions/Rest';
 const { Content } = Layout;
-const PortFolio = () => {
-    const dataSource = [
-        {
-          key: '1',
-          asset: 'Apple Inc',
-          qty: 220,
-          price: '100.32',
-          total: '22070.40',
-        },
-        {
-            key: '2',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          },
-          {
-            key: '3',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          },
-          {
-            key: '4',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          },
-          {
-            key: '5',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          },
-          {
-            key: '6',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          },
-          {
-            key: '7',
-            asset: 'Apple Inc',
-            qty: 220,
-            price: '100.32',
-            total: '22070.40',
-          }
-      ];
+
+const PortFolio = ({shareData}:any) => {
+  const [ balance, setTotalBalance ] = useState();
+  const [ dSource, setDataSource ] = useState([]);
+  var portfolioData:any = [];
+
+  useEffect(() => {
+    restActions
+    .GET(`order/portfolio`)
+    .then((res) => {
+     setTotalBalance(res['available_funds'].toFixed(2));
+     setDataSource(res['positions']);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  },[shareData]);
+
+    dSource.map((item) => {
+      let date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(item['date']);
+      portfolioData.push({ asset : item['asset']['name'], ticker: item['asset']['ticker'], qty: item['quantity'], price: item['cost_basis'], date: date})
+    });
+
     const columns = [
         {
           title: 'Asset',
           dataIndex: 'asset',
           key: 'asset',
+        },
+        {
+          title: 'Ticker',
+          dataIndex: 'ticker',
+          key: 'ticker',
+        },
+        {
+          title: 'Date',
+          dataIndex: 'date',
+          key: 'date',
         },
         {
           title: 'Qty.',
@@ -68,23 +51,18 @@ const PortFolio = () => {
           title: 'Price',
           dataIndex: 'price',
           key: 'price',
-        },
-        {
-            title: 'Total',
-            dataIndex: 'total',
-            key: 'total',
-          },
+        }
       ];
     return(
         <Card className="site-layout-background card-book-wrapper" bordered={false}>
         <Row className='card-heading-color'>PORTFOLIO</Row>
         <Row className='portfolioMargin'>
-            <p>$17,300.24</p>
+            <p>${balance}</p>
             <p>Total Balance</p>
         </Row>
         <Col>
         <div className='tableOverflowX'>
-        <Table dataSource={dataSource} columns={columns} pagination={false} className="tdCellBorder" />
+        <Table dataSource={portfolioData} columns={columns} pagination={false} className="tdCellBorder" />
         </div>
         </Col>
         </Card>

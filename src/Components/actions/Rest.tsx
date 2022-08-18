@@ -13,10 +13,16 @@ const axiosInstance = axios.create({
   axiosInstance.interceptors.request.use(async function (request) {
     if(!tokens){
       let config = {
-        'username': 'calvin@oasis.com',
+        'username': 'crosbycalvin@gmail.com',
         'password': 'password'
       };
-      await axios.post('https://mengine.oasispromarkets.com/login', config).then((response) => {
+      const params = new URLSearchParams(config);
+      let headers = {
+        headers : {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+      }
+      await axios.post('https://mengine.oasispromarkets.com/login', params, headers).then((response) => {
           let newToken = response.data.access_token;
           window.localStorage.setItem('token', newToken);
           request!.headers!.Authorization = `Bearer ${newToken}`;

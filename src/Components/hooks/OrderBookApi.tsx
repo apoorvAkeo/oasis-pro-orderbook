@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+
 import restActions from '../actions/Rest';
+import { AssetContext } from '../actions/Context';
+import { useEffect, useState, useContext } from 'react';
 //https://api-public.sandbox.pro.coinbase.com
 //const client = new W3CWebSocket('wss://ws-feed-public.sandbox.pro.coinbase.com');
 //const client = new WebSocket("wss://ws-feed.pro.coinbase.com");
 
 const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) => {
+  const ticker = useContext(AssetContext);
   const [ob, setOB] = useState({
     product_id: product_id,
     buys: [],
@@ -22,7 +25,7 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
   //api calling setup
   useEffect(()=>{
     restActions
-    .GET(`order/`)
+    .GET(`order/${ticker}/order-book`)
     .then((res) => {
        let ask = res['asks'];
        ask.map((data) => sellArray.push([`${data.price}`,`${data.quantity}`]));
@@ -68,7 +71,7 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
     .catch((error) => {
       console.log(error) 
     })
-   },[sharedData]);
+   },[sharedData,ticker]);
 
 
   // useEffect(() => {

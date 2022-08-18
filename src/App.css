@@ -105,7 +105,7 @@
 }
 
 .setCardMinHeight .ant-card .ant-card-body{
-min-height: 365px!important;
+min-height: 383px!important;
 }
 
 .ant-table-tbody > tr > td {
@@ -746,11 +746,16 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
   font-weight: 600;
 }
 
-.thirdRowOrderForm .ant-btn:hover, .thirdRowOrderForm .ant-btn:focus{
-  color: #5fcf8c;
+.thirdRowOrderForm .ant-btn:focus{
+  color: #fff;
   border-color: #5fcf8c;
+  background: #5fcf8c;
 }
 
+.thirdRowOrderForm .ant-btn:hover{
+  color: #5fcf8c;
+  background: #fff;
+}
 .notificationMsgContainer{
   border-left: 4px solid #488768;
   color: #fff;
@@ -807,4 +812,19 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 .ant-notification-notice-close {
   top: 3px;
   right: 11px;
+}
+
+.tradeActivityTable{
+  max-height: 300px;
+    overflow-x: auto;
+}
+
+.loader{
+  position:fixed;
+  top:50%;
+  left:50%;
+}
+
+.loader img{
+  width:50px;
 }

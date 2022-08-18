@@ -45,11 +45,11 @@ const MainContent = () => {
                   <OrderForm onHandleChange={onHandleChange}/>
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12} className="mbPaddingTop portfolioWrapper">
-                  <PortFolio />
+                  <PortFolio shareData={shareData}/>
                 </Col>
               </Row>
               <Col xs={24} sm={24} md={24} lg={24} className="tradeActivTopPading">
-                <TradeActivity />  
+                <TradeActivity shareData={shareData}/>  
               </Col>
           </Col>
         </Row>

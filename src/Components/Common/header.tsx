@@ -2,19 +2,26 @@ import { DownOutlined } from '@ant-design/icons';
 import * as React from 'react';
 import { Row, Col, Dropdown, Menu, Space, Typography, Select } from "antd";
 
-const SiteHeader = () => {
+
+const SiteHeader = ({onAssetChange}:any) => {
     const { Option } = Select;
+
+    const changeAssetValue = (e:any) => {
+        onAssetChange(e);
+    }    
+
         return(
             <Row className="selectDropDownLabel">
                     <div className="select-wrap">
-                        <Select defaultValue="Apple INC" className='ChangeDropDownColor' bordered={false}>
-                            <Option value="Apple INC">Apple INC</Option>
-                            <Option value="Microsoft">Microsoft</Option>
-                            <Option value="Tesla">Tesla</Option>
+                        <Select defaultValue="RCN" className='ChangeDropDownColor' bordered={false} onChange={(e) => changeAssetValue(e)}>
+                            <Option value="RCN">RCN</Option>
+                            <Option value="EGX">EGX</Option>
+                            <Option value="IXC">IXC</Option>
+                            {/* <Option value="Tesla">Tesla</Option> */}
                         </Select>
                         <label>Select asset</label>
                     </div>
-                    <Row>
+                    {/* <Row>
                         <Col>
                             <span>$93.00</span>
                             <span>Last trade price</span>
@@ -23,7 +30,7 @@ const SiteHeader = () => {
                             <span><a>2093090</a></span>
                             <span>Shares</span>
                         </Col>
-                    </Row>
+                    </Row> */}
             </Row>
         );
 
