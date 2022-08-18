@@ -5,19 +5,21 @@ import { Card, Table } from 'antd';
 
 const TradeActivity = ({shareData}:any) => {
   const [dSource, setDataSource] = useState([]);
+  var trendingDAta:any = [];
   useEffect(() => {
     restActions
     .GET(`trade/recent-trades`)
     .then((res:any) => {
-   //  console.log("treding Activity",res);
      setDataSource(res);
-   //  console.log(dSource);
     })
     .catch((err) => {
       console.log(err);
     })
   },[shareData]);
-
+  dSource.map((item) => {
+    let side = (item['side'] === 1 ? 'Buy' : 'Sell');
+    trendingDAta.push({ ticker : item['ticker'], name: item['name'], quantity: item['quantity'], price: item['price'], side: side})
+  });
     const columns = [
         {
           title: 'Ticker',
@@ -49,7 +51,7 @@ const TradeActivity = ({shareData}:any) => {
         <Card className="site-layout-background card-book-wrapper" bordered={false}>
         <p className='card-heading-color'>TRENDING ACTIVITY</p>
         <div className='tableOverflowX'>
-        <Table dataSource={dSource} columns={columns} pagination={false} className="tradeActivityTable"/>
+        <Table dataSource={trendingDAta} columns={columns} pagination={false} className="tradeActivityTable"/>
         </div>
         </Card>
     );
