@@ -1,8 +1,8 @@
 import * as React from 'react';
-const loader: string = require("../../../src/loader.gif");
+const loader: string = require("../../../src/Ajax-loader.gif");
 const Loader = () => {
     return(
-        <div className='loader'><img src={loader} /></div>
+        <div className='wrapperLoader'><div className='loader'><img src={loader} /></div></div> 
     )
 }
 

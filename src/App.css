@@ -819,12 +819,19 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
     overflow-x: auto;
 }
 
-.loader{
-  position:fixed;
-  top:50%;
-  left:50%;
+.wrapperLoader{
+  z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #00000052
 }
 
 .loader img{
-  width:50px;
+  width:100px;
 }

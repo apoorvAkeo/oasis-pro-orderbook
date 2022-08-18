@@ -30,7 +30,7 @@ const App: React.FC = () =>  {
   const onAssetChange = (e:any) => {
     setLoading(prev => !prev);
     setAsset(e);
-    setTimeout(() => setLoading(prev => !prev), 1500);
+    setTimeout(() => setLoading(prev => !prev), 500);
   }
 
   return (
@@ -65,7 +65,7 @@ const App: React.FC = () =>  {
                 <SiteHeader onAssetChange={onAssetChange}/>
               </Header>
             <Content className='bodyContentStyle'>
-            { !loading ?  <MainContent /> : <Loader /> }
+              <MainContent loader={loading}/>
             </Content>
         </AssetContext.Provider>  
       </Layout>

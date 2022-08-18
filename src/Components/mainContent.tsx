@@ -5,9 +5,8 @@ import OrderForm from './orderForm';
 import PortFolio from './portFolio';
 import TradeActivity from './tradeActivity';
 import '../../src/App.css';
-
-const MainContent = () => {
-
+import Loader from './Common/loader';
+const MainContent = ({loader}) => {
     const [shareData, setSharedData] = useState({});
     const onHandleChange = (e:any) => {
       setSharedData(e);
@@ -35,6 +34,7 @@ const MainContent = () => {
 
     return(
     <div style={{ padding: '24' }}>
+      { loader ? <Loader /> : null }
         <Row className='cardBoxShadow'>
           <Col xs={24} sm={24} md={8} lg={8} className="orderBookSpaceManage cardPaddingRight">
                 <OrderBook product_id="BTC-USD" shareData={shareData} />
@@ -52,7 +52,7 @@ const MainContent = () => {
                 <TradeActivity shareData={shareData}/>  
               </Col>
           </Col>
-        </Row>
+        </Row> 
     </div>
     );
 

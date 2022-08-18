@@ -15,8 +15,8 @@ const SiteHeader = ({onAssetChange}:any) => {
                     <div className="select-wrap">
                         <Select defaultValue="RCN" className='ChangeDropDownColor' bordered={false} onChange={(e) => changeAssetValue(e)}>
                             <Option value="RCN">RCN</Option>
-                            <Option value="EGX">EGX</Option>
-                            <Option value="IXC">IXC</Option>
+                            {/* <Option value="EGX">EGX</Option>
+                            <Option value="IXC">IXC</Option> */}
                             {/* <Option value="Tesla">Tesla</Option> */}
                         </Select>
                         <label>Select asset</label>
