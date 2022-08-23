@@ -79,6 +79,13 @@ const App: React.FC = () =>  {
                   onClick: () => setCollapsed(!collapsed),
                 })}
                 <SiteHeader onAssetChange={onAssetChange}/>
+                <Routes>
+                    {/* <Route path="/login" element={<Login />} /> */}
+                    <Route path="/oasis-pro-orderbook/login" element={<Login />} />
+                    {/* {siteRoutes.map(({ path, ComponentIn }, key: number) => {
+                      return <Route key={key} path={path} element={<ComponentIn />} />;
+                    })} */}
+                  </Routes>
               </Header>
             <Content className='bodyContentStyle'>
              <MainContent loader={loading}/>
