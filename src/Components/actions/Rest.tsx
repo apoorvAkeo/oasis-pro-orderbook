@@ -44,7 +44,7 @@ const axiosInstance = axios.create({
             if (err.response.status === 401 && tokens !== null) {
               window.localStorage.removeItem('token');
               window.localStorage.removeItem('loggedIn')
-              window.location.href = "/login";
+              window.location.href = "/oasis-pro-orderbook/login";
               // setTimeout(() => {
               // window.localStorage.removeItem('token')
               // window.location.href = "/match-engine-frontend/login";

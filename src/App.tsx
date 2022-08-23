@@ -86,7 +86,8 @@ const App: React.FC = () =>  {
         </AssetContext.Provider>  
       </Layout>
     </Layout>  :  <Routes>
-                    <Route path="login" element={<Login />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/oasis-pro-orderbook/login" element={<Login />} />
                     {/* {siteRoutes.map(({ path, ComponentIn }, key: number) => {
                       return <Route key={key} path={path} element={<ComponentIn />} />;
                     })} */}

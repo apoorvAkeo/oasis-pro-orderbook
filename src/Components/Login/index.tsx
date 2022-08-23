@@ -58,7 +58,7 @@ const Login: React.FC = () => {
               if(localStorage.getItem('token')){
                 setLoader(false);
                 localStorage.setItem('loggedIn', '1');
-                window.location.href = '/';
+                window.location.href = '/oasis-pro-orderbook/';
               }
             }else{
               setLoader(false);
