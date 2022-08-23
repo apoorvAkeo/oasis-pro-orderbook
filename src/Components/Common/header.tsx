@@ -13,7 +13,7 @@ const SiteHeader = ({onAssetChange}:any) => {
     const Logout = () => {
               window.localStorage.removeItem('token');
               window.localStorage.removeItem('loggedIn')
-              window.location.href = "/oasis-pro-orderbook/login";
+              window.location.href = "/login";
     }
         return(
             <Row className="selectDropDownLabel">

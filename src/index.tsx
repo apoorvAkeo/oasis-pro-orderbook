@@ -14,7 +14,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-     <Router basename="/oasis-pro-orderbook/"> 
+     <Router basename="/"> 
       <App />
      </Router>
   </React.StrictMode>,

@@ -33,7 +33,7 @@ const App: React.FC = () =>  {
   // Check if logged in
   useEffect(() => {
     if ( !localStorage.getItem('loggedIn') || !localStorage.getItem('token')) {
-        navigate('/login');
+        navigate('/oasis-pro-orderbook/login');
         setLogedIn(false);
     }else{
       if (location.pathname == '/login' && localStorage.getItem('token')) {
@@ -86,7 +86,7 @@ const App: React.FC = () =>  {
         </AssetContext.Provider>  
       </Layout>
     </Layout>  :  <Routes>
-                    <Route path="/login" element={<Login />} />
+                    {/* <Route path="/login" element={<Login />} /> */}
                     <Route path="/oasis-pro-orderbook/login" element={<Login />} />
                     {/* {siteRoutes.map(({ path, ComponentIn }, key: number) => {
                       return <Route key={key} path={path} element={<ComponentIn />} />;
