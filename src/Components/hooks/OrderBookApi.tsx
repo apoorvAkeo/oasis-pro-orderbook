@@ -37,7 +37,6 @@ const OrderBookApi = (product_id: unknown, sharedData: any, depth = undefined) =
        previousObject[0].spread = res['spread'];
        setWholeData(previousObject);
             {wholeData.map((data:any) => {
-              console.log("data",data);
               if (data.type === "snapshot") {   
                   setOB((prevOB) => {
                     data.asks.sort((a: any[], b: any[]) =>

@@ -1,6 +1,6 @@
-import { DownOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import * as React from 'react';
-import { Row, Col, Dropdown, Menu, Space, Typography, Select } from "antd";
+import { Row, Col, Dropdown, Menu, Space, Typography, Select, Button } from "antd";
 
 
 const SiteHeader = ({onAssetChange}:any) => {
@@ -10,8 +10,14 @@ const SiteHeader = ({onAssetChange}:any) => {
         onAssetChange(e);
     }    
 
+    const Logout = () => {
+              window.localStorage.removeItem('token');
+              window.localStorage.removeItem('loggedIn')
+              window.location.href = "/login";
+    }
         return(
             <Row className="selectDropDownLabel">
+                
                     <div className="select-wrap">
                         <Select defaultValue="RCN" className='ChangeDropDownColor' bordered={false} onChange={(e) => changeAssetValue(e)}>
                             <Option value="RCN">RCN</Option>
@@ -21,6 +27,12 @@ const SiteHeader = ({onAssetChange}:any) => {
                         </Select>
                         <label>Select asset</label>
                     </div>
+                    
+                        <Button type="primary" size="middle" onClick={Logout}>
+                            Logout
+                        </Button>
+                     
+             
                     {/* <Row>
                         <Col>
                             <span>$93.00</span>
@@ -31,7 +43,9 @@ const SiteHeader = ({onAssetChange}:any) => {
                             <span>Shares</span>
                         </Col>
                     </Row> */}
+                   
             </Row>
+            
         );
 
 }

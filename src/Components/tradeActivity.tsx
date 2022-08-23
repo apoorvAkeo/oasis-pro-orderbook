@@ -16,9 +16,9 @@ const TradeActivity = ({shareData}:any) => {
       console.log(err);
     })
   },[shareData]);
-  dSource.map((item) => {
+  dSource.map((item, key: number) => {
     let side = (item['side'] === 1 ? 'Buy' : 'Sell');
-    trendingDAta.push({ ticker : item['ticker'], name: item['name'], quantity: item['quantity'], price: item['price'], side: side})
+    trendingDAta.push({ key : key, ticker : item['ticker'], name: item['name'], quantity: item['quantity'], price: item['price'], side: side})
   });
     const columns = [
         {

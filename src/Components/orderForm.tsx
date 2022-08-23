@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState, useContext } from "react";
 import restActions from './actions/Rest';
+import Loader from './Common/loader';
 import { AssetContext } from './actions/Context';
 import { Card, Button, Row, Col, Tabs, notification,Input } from 'antd';
 import type { NotificationPlacement } from 'antd/es/notification';
@@ -14,7 +15,7 @@ const OrderForm = ({onHandleChange}:any) => {
     const [totalPrice,setTotalPrice] = useState(10);
     const [disableButton, setDisableButton] = useState(false);
     const [type, setType] = useState("sell");
-
+    const [loader,setLoader] = useState(false);
     useEffect(() => {
         setTotalPrice(qty*price);
     },[qty,price]);
@@ -37,6 +38,7 @@ const OrderForm = ({onHandleChange}:any) => {
 
     const postOrderBookData = (placement: NotificationPlacement, orderType:string) => {
         if(qty && totalPrice){
+            setLoader(true);
             setDisableButton(true);
                 let data:any = {
                     price: price,
@@ -51,6 +53,7 @@ const OrderForm = ({onHandleChange}:any) => {
                 .POST(url,data)
                 .then((res) => {
                     if(res){
+                        setLoader(false);
                        onSentData();
                         setQty(0);
                         setPrice(0);
@@ -70,6 +73,7 @@ const OrderForm = ({onHandleChange}:any) => {
                   console.log(error.toJSON()) 
                 })      
         }else{
+            setLoader(false);
             notification.error({
                 message: `Error`,
                 description: `Select quantity and limit price is mandatory`,
@@ -84,8 +88,20 @@ const OrderForm = ({onHandleChange}:any) => {
        onHandleChange({});
     }
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            onSentData();
+        }, 3000); 
+
+        return function stopTimer() {
+          clearInterval(timer)
+        }
+      });
+
     return(
+        
         <Card className="site-layout-background card-book-wrapper" bordered={false}>
+            { loader ? <Loader /> : null }
             <Row className='card-heading-color'>ORDER FORM</Row>
                 <Row className='orderFormButtonSection' >
                     <Tabs defaultActiveKey="1" type="card" size={'small'} onChange={setTabChange}>

@@ -21,11 +21,10 @@ const PortFolio = ({shareData}:any) => {
     })
   },[shareData]);
 
-    dSource.map((item) => {
+    dSource.map((item, key: number) => {
       let date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(item['date']);
-      portfolioData.push({ asset : item['asset']['name'], ticker: item['asset']['ticker'], qty: item['quantity'], price: item['cost_basis'], date: date})
+      portfolioData.push({ key: key, asset : item['asset']['name'], ticker: item['asset']['ticker'], qty: item['quantity'], price: item['cost_basis'], date: date})
     });
-
     const columns = [
         {
           title: 'Asset',

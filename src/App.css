@@ -52,7 +52,7 @@
   color: #1890ff;
 }
 
-#components-layout-demo-custom-trigger .logo {
+#components-layout-demo-custom-trigger .innerLogo {
 
   margin: 16px;
   height: 32px;
@@ -60,10 +60,10 @@
 }
 #components-layout-demo-custom-trigger .logo img {
     width: 100%;
-}
+} 
 
-.site-layout .site-layout-background {
-  background: #2b2c3b;
+#components-layout-demo-custom-trigger .site-layout .site-layout-background {
+  background: #2b2c3b  !important;
 }
 .ant-layout {
   background: #3c3c4f !important;
@@ -172,6 +172,8 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.21);
 .selectDropDownLabel{
   flex: 1;
   align-items: center;
+  justify-content: space-between;
+    margin-right: 52px;
 }
 
 .selectDropDownLabel span{
@@ -854,5 +856,58 @@ body::-webkit-scrollbar-thumb:hover, .tradeActivityTable::-webkit-scrollbar-thum
 }
 
 .loader img{
-  width:100px;
+  width:100px!important;
+}
+.login-container{
+  padding: 15px;
+  }
+.login-container .ant-layout,.site-layout-background,.ant-layout-footer{
+  background: transparent !important;
+}
+.login-container .login-inner-content{
+  height: 100%;
+}
+.login-container .login-title{
+  text-align: center;
+  margin: 20px 0px;
+}
+.login-container h2,.login-container h3{
+  margin-bottom: 0;
+  color: #fff !important;
+}
+.login-container img{
+  width: 30px;
+}
+.login-container .form-content .form,.login-container .form-content .logo{
+  width: 100%!important;
+  margin: 15px!important;
+}
+.login-container .form img{
+  width: 100%;
+}
+.login-container .form-content .ant-input-affix-wrapper input{
+  background-color:transparent !important;
+  color:#fff!important;
+}
+.login-container .form-content .ant-input-affix-wrapper .ant-input-prefix{
+  color:#5A5A5A;
+}
+.login-container .form-content {
+  margin: 0px auto;
+  max-width: 374px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.login-container .form-content .ant-input-affix-wrapper{
+  background-color:transparent !important;
+  border-color:#5A5A5A;
+  border-radius: 6px;
+}
+
+body.bgBackground{
+  background-image: url(../src/assets/login-bg.png);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
