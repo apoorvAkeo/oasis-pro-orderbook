@@ -33,6 +33,7 @@ const App: React.FC = () =>  {
   // Check if logged in
   useEffect(() => {
     if ( !localStorage.getItem('loggedIn') || !localStorage.getItem('token')) {
+      console.log("chek");
         navigate('/oasis-pro-orderbook/login');
         setLogedIn(false);
     }else{
@@ -53,7 +54,10 @@ const App: React.FC = () =>  {
   return (
    
     <div className='' id="components-layout-demo-custom-trigger">
-     {  logedIn ? <Layout>
+      <Routes>
+        <Route path="/oasis-pro-orderbook/login" element={<Login />} /> 
+      </Routes>
+     {  logedIn && <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo innerLogo">
           <img src={logo} />
@@ -79,26 +83,14 @@ const App: React.FC = () =>  {
                   onClick: () => setCollapsed(!collapsed),
                 })}
                 <SiteHeader onAssetChange={onAssetChange}/>
-                <Routes>
-                    {/* <Route path="/login" element={<Login />} /> */}
-                    <Route path="/oasis-pro-orderbook/login" element={<Login />} />
-                    {/* {siteRoutes.map(({ path, ComponentIn }, key: number) => {
-                      return <Route key={key} path={path} element={<ComponentIn />} />;
-                    })} */}
-                  </Routes>
+                
               </Header>
             <Content className='bodyContentStyle'>
              <MainContent loader={loading}/>
             </Content>
         </AssetContext.Provider>  
       </Layout>
-    </Layout>  :  <Routes>
-                    {/* <Route path="/login" element={<Login />} /> */}
-                    <Route path="/oasis-pro-orderbook/login" element={<Login />} />
-                    {/* {siteRoutes.map(({ path, ComponentIn }, key: number) => {
-                      return <Route key={key} path={path} element={<ComponentIn />} />;
-                    })} */}
-                  </Routes> }
+    </Layout>  }
     </div> 
   );
 }
