@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Row, Col, Typography, Form, Input, Button } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loader from '../Common/loader';
 import restActions from '../actions/Rest';
+import { ApiUrl } from '../Helpers/Constants';
 import { appendClassOnBody, removeClassfromBody } from '../Helpers/helperFunc';
  const logo: string = require("../../logo.svg").default;
 /* eslint-disable no-template-curly-in-string */
@@ -58,7 +59,7 @@ const Login: React.FC = () => {
               if(localStorage.getItem('token')){
                 setLoader(false);
                 localStorage.setItem('loggedIn', '1');
-                window.location.href = '/oasis-pro-orderbook/';
+                navigate(ApiUrl.base);
               }
             }else{
               setLoader(false);

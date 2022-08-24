@@ -1,7 +1,6 @@
 {
   "name": "matching-engine",
   "version": "0.1.0",
-  "homepage": "https://apoorvAkeo.github.io/oasis-pro-orderbook",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",

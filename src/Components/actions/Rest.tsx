@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import { Navigate } from 'react-router-dom';
+import { ApiUrl } from '../Helpers/Constants';
 let tokens = localStorage.getItem('token') ? localStorage.getItem('token') : null;
 const axiosInstance = axios.create({
   // env file base url
@@ -11,6 +12,8 @@ const axiosInstance = axios.create({
 });
   //interceptor setup
   axiosInstance.interceptors.request.use(async function (request) {
+    tokens = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+    request!.headers!.Authorization = `Bearer ${tokens}`;
     // if(!tokens){
     //   let config = {
     //     'username': 'crosbycalvin@gmail.com',
@@ -28,6 +31,7 @@ const axiosInstance = axios.create({
     //       request!.headers!.Authorization = `Bearer ${newToken}`;
     //   }) 
     // }
+    //console.log("intercpe");
     return Promise.resolve(request);
   }, function (error) {
     return Promise.reject(error);
@@ -41,14 +45,13 @@ const axiosInstance = axios.create({
   async (err) => {
     if (err) {
           if (err.response) {
-            if (err.response.status === 401 && tokens !== null) {
+            console.log("response",err.response);
+            console.log(tokens);
+            console.log(window.location.pathname);
+            if ((err.response.status === 401 || tokens == null) && window.location.pathname !== '/login') {
               window.localStorage.removeItem('token');
-              window.localStorage.removeItem('loggedIn')
-              window.location.href = "/oasis-pro-orderbook/login";
-              // setTimeout(() => {
-              // window.localStorage.removeItem('token')
-              // window.location.href = "/match-engine-frontend/login";
-              // }, 5000);    
+              window.localStorage.removeItem('loggedIn');
+              window.location.href = ApiUrl.login;   
             }
           }
         } else {

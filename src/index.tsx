@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import { ApiUrl } from './Components/Helpers/Constants';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -14,7 +15,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-     <Router basename="/"> 
+     <Router basename={ApiUrl.base}>
       <App />
      </Router>
   </React.StrictMode>,

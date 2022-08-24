@@ -10,6 +10,7 @@ import { Layout, Menu } from 'antd';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import SiteHeader from './Components/Common/header';
 import MainContent from './Components/mainContent';
+import { ApiUrl } from './Components/Helpers/Constants';
 // import './scss/style.scss';
 import { useState, useEffect } from 'react';
 import Login from './Components/Login'
@@ -29,21 +30,31 @@ const App: React.FC = () =>  {
   useEffect(() => {
     document.title = "OasisPro Matching Engine"
   }, []);
-
   // Check if logged in
   useEffect(() => {
-    if ( !localStorage.getItem('loggedIn') || !localStorage.getItem('token')) {
-      console.log("chek");
-        navigate('/oasis-pro-orderbook/login');
-        setLogedIn(false);
-    }else{
-      if (location.pathname == '/login' && localStorage.getItem('token')) {
-        navigate('/');
-      }
-      setTimeout(() => setLoading(prev => !prev), 500); 
+    //console.log("00");
+    if( location.pathname === ApiUrl.base && !localStorage.getItem('token') ){
+      setLogedIn(false);
+      navigate(ApiUrl.login);
+    }else if(location.pathname === ApiUrl.base && localStorage.getItem('token')){
+      setLogedIn(true);  
     }
-    setLoading(prev => !prev);
-  }, []);
+    else if(location.pathname === ApiUrl.login && !localStorage.getItem('token')){
+      setLogedIn(false);  
+    }
+    else if(location.pathname === ApiUrl.login && localStorage.getItem('token')){
+      setLogedIn(true);
+      navigate(ApiUrl.base);
+      }
+    // else{
+    //   console.log("Else");
+    //   setLogedIn(false);
+    // }
+   //console.log(logedIn);
+   console.log("Entry point");
+   setTimeout(() => setLoading(prev => !prev), 500);
+   setLoading(prev => !prev);
+  }, [location]);
 
   const onAssetChange = (e:any) => {
     setLoading(prev => !prev);
@@ -55,8 +66,8 @@ const App: React.FC = () =>  {
    
     <div className='' id="components-layout-demo-custom-trigger">
       <Routes>
-        <Route path="/oasis-pro-orderbook/login" element={<Login />} /> 
-      </Routes>
+        <Route path="login" element={<Login />} /> 
+      </Routes> 
      {  logedIn && <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo innerLogo">
@@ -86,11 +97,13 @@ const App: React.FC = () =>  {
                 
               </Header>
             <Content className='bodyContentStyle'>
-             <MainContent loader={loading}/>
+            <Routes>
+              <Route path="/" element={<MainContent loader={loading}/>} /> 
+            </Routes>
             </Content>
         </AssetContext.Provider>  
       </Layout>
-    </Layout>  }
+    </Layout> }
     </div> 
   );
 }

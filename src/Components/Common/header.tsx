@@ -1,11 +1,12 @@
-import { LogoutOutlined } from '@ant-design/icons';
 import * as React from 'react';
+import { ApiUrl } from '../Helpers/Constants';
+import { Link, useNavigate } from 'react-router-dom';
 import { Row, Col, Dropdown, Menu, Space, Typography, Select, Button } from "antd";
 
 
 const SiteHeader = ({onAssetChange}:any) => {
     const { Option } = Select;
-
+    let navigate = useNavigate();
     const changeAssetValue = (e:any) => {
         onAssetChange(e);
     }    
@@ -13,7 +14,7 @@ const SiteHeader = ({onAssetChange}:any) => {
     const Logout = () => {
               window.localStorage.removeItem('token');
               window.localStorage.removeItem('loggedIn')
-              window.location.href = "/oasis-pro-orderbook/login";
+              navigate(ApiUrl.login);
     }
         return(
             <Row className="selectDropDownLabel">
