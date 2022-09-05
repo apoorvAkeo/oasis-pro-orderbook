@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Row, Col, Typography, Form, Input, Button } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation,useSearchParams, Navigate } from 'react-router-dom';
 import Loader from '../Common/loader';
 import restActions from '../actions/Rest';
 import { ApiUrl } from '../Helpers/Constants';
@@ -27,7 +27,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const state = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   // Append class on body
   useEffect(() => {
     appendClassOnBody('bgBackground');
@@ -35,11 +37,10 @@ const Login: React.FC = () => {
       removeClassfromBody('bgBackground');
     };
   });
-
+  
   useEffect(()=> {
     setError(false);
   },[email,password]);
-
   const onFinish = () => {
       setLoader(true);
         let config = {
@@ -59,7 +60,15 @@ const Login: React.FC = () => {
               if(localStorage.getItem('token')){
                 setLoader(false);
                 localStorage.setItem('loggedIn', '1');
+                let last_param:any = searchParams.get('last_login');
+                if(last_param){
+                  console.log("under if");
+                  console.log("last parameter",last_param);
+                  window.location.href = '/'+last_param; 
+                }
+                 else{
                 navigate(ApiUrl.base);
+                }
               }
             }else{
               setLoader(false);

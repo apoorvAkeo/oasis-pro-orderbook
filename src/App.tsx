@@ -7,10 +7,16 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate,useSearchParams } from 'react-router-dom';
 import SiteHeader from './Components/Common/header';
 import MainContent from './Components/mainContent';
 import { ApiUrl } from './Components/Helpers/Constants';
+import Profile from './Components/Pages/profile';
+import PortFolio from './Components/Pages/portfolio';
+import AuthRequire from './Components/Helpers/AuthRequire';
+import Feature from './Components/Pages/feature';
+import ProtectedOne from './Components/Pages/protectedOne';
+import ProtectedTwo from './Components/Pages/protectedTwo';
 // import './scss/style.scss';
 import { useState, useEffect } from 'react';
 import Login from './Components/Login'
@@ -26,32 +32,44 @@ const App: React.FC = () =>  {
   const [asset, setAsset] = useState("RCN");
   const [loading, setLoading] = useState(false);
   const [logedIn, setLogedIn] = useState(true);
-
+  const [token,setToken] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
+    if(localStorage.getItem('token'))
+    setToken(true);
+    else
+    setToken(false);
     document.title = "OasisPro Matching Engine"
   }, []);
   // Check if logged in
   useEffect(() => {
     //console.log("00");
+    let last_param:any = searchParams.get('last_login');
+    if(last_param && localStorage.getItem('token')){
+      navigate(`${last_param}`);
+    }else {
     if( location.pathname === ApiUrl.base && !localStorage.getItem('token') ){
       setLogedIn(false);
       navigate(ApiUrl.login);
-    }else if(location.pathname === ApiUrl.base && localStorage.getItem('token')){
+    }
+    else if(location.pathname === ApiUrl.base && localStorage.getItem('token')){
       setLogedIn(true);  
     }
+    else if(((location.pathname === ApiUrl.login && localStorage.getItem('token')) && last_param))
+    {
+      setLogedIn(true);
+      navigate(last_param);
+    }
     else if(location.pathname === ApiUrl.login && !localStorage.getItem('token')){
+      console.log("tjre");
       setLogedIn(false);  
     }
     else if(location.pathname === ApiUrl.login && localStorage.getItem('token')){
       setLogedIn(true);
       navigate(ApiUrl.base);
       }
-    // else{
-    //   console.log("Else");
-    //   setLogedIn(false);
-    // }
+    }
    //console.log(logedIn);
-   console.log("Entry point");
    setTimeout(() => setLoading(prev => !prev), 500);
    setLoading(prev => !prev);
   }, [location]);
@@ -61,12 +79,24 @@ const App: React.FC = () =>  {
     setAsset(e);
     setTimeout(() => setLoading(prev => !prev), 500);
   }
-
+ // const protectOne = AuthRequire(ProtectedOne);
   return (
    
     <div className='' id="components-layout-demo-custom-trigger">
       <Routes>
         <Route path="login" element={<Login />} /> 
+        <Route path="/profile" element={<Profile />} />
+              <Route path="/portfolio" element={<PortFolio />} />
+              <Route path="/feature" element={<Feature />} />
+              {/* <Route path="/protectedOne"
+              element={protectOne  } /> */}
+              <Route path='/protectedOne' element={AuthRequire(ProtectedOne)} />
+              {/* <Route path="/protectedTwo" 
+              element={
+                <AuthRequire isLoggedIn={token}>
+                  <ProtectedTwo />
+                </AuthRequire>
+              } /> */}
       </Routes> 
      {  logedIn && <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
